@@ -30,6 +30,7 @@ class ChatState(TypedDict):
 
 def create_chunks(state: ChatState) -> ChatState:
     """Split chat content into manageable chunks."""
+    print("create_chunks")
     try:
         # Parse the HTML content
         messages = parse_whatsapp_html(state["chat_content"])
@@ -37,7 +38,8 @@ def create_chunks(state: ChatState) -> ChatState:
             raise ValueError("No messages found in chat content")
 
         # Create chunks
-        MAX_SIZE = 25000
+        #MAX_SIZE = 25000
+        MAX_SIZE = 1000
         chunks_of_messages = []
         current_messages = []
 
@@ -82,6 +84,7 @@ def create_chunks(state: ChatState) -> ChatState:
 
 async def process_chunk(state: ChatState) -> ChatState:
     """Process a single chunk of chat content."""
+    print("process_chunk")
     try:
         current_chunk = state["chunks"][state["current_chunk"]]
         
@@ -159,6 +162,7 @@ def should_continue(state: ChatState) -> bool:
 
 async def combine_responses(state: ChatState) -> ChatState:
     """Combine all chunk responses into a final response."""
+    print("combine_responses")
     try:
         # Create a prompt to combine all responses
         combined_content = "\n\n".join([
