@@ -152,7 +152,7 @@ def create_chunk_text(messages):
     if not messages:
         return ""
         
-    chunk_text = f"<firstMsgId>{messages[0]['id']}</firstMsgId>"
+    chunk_text = '' #f"<firstMsgId>{messages[0]['id']}</firstMsgId>"
     for msg in messages:
         chunk_text += format_message(msg)
     return chunk_text
