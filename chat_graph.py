@@ -271,9 +271,16 @@ async def process_summaries(summaries: str, user_question: str) -> str:
     try:
         # Extract individual chat summaries
         logger.info(f"Processing summaries (preview: {log_content_preview(summaries)})")
+        logger.info("--------------------------------")
+        logger.info('Summaries:')
+        logger.info(summaries)
+        logger.info("--------------------------------")
         chat_blocks = re.split(r'=== Chat: WhatsApp Chat - \d+ ===', summaries)
         chat_blocks = [block.strip() for block in chat_blocks if block.strip()]
-        
+        logger.info("--------------------------------")
+        logger.info('chat_blocks:')
+        logger.info(chat_blocks)
+        logger.info("--------------------------------")
         if not chat_blocks:
             raise ValueError("No valid chat summaries found in content")
 

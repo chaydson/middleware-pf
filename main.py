@@ -68,6 +68,7 @@ async def process_chat_summaries(request: SummaryRequest):
     try:
         response = await process_summaries(request.summaries, request.user_question)
         return {"response": response}
+    
     except Exception as e:
         error_msg = f"Error processing summaries: {str(e)}"
         logger.error(error_msg)
